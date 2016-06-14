@@ -102,7 +102,6 @@ $("#rogue").click(function(){
     console.log(hero);
 });
 
-
 $("#shaman").click(function(){
     $("#findCard").show(); // or .fadeIn(), etc.
     $("#dropVal").hide();
@@ -111,7 +110,6 @@ $("#shaman").click(function(){
     console.log(hero);
 });
 
-
 $("#warlock").click(function(){
     $("#findCard").show(); // or .fadeIn(), etc.
     $("#dropVal").hide();
@@ -119,7 +117,6 @@ $("#warlock").click(function(){
     hero = "Warlock";
     console.log(hero);
 });
-
 
 $("#warrior").click(function(){
     $("#findCard").show(); // or .fadeIn(), etc.
@@ -142,30 +139,22 @@ document.getElementById('classChoice').onclick = function () {
             // Success!
             var data = JSON.parse(request.responseText);
 
-            deck.sort();
+            for (i = 0; i < data.length; i++) {
+                //working on adding img to page
+                var hi = data[i].img;
+                console.log(hi);
 
-            for (var i = 0; i < 30; i++) {
-                if (deck[i + 2] == deck[i]) {
-                    deck.push(data[0].name);
-                }
+                var node = document.createElement("img");
+                node.href = hi;
+                node.alt = "ass";
+
+                var img = document.createElement("img");
+                img.src = hi;
+                node.appendChild(img);
+
+                document.body.appendChild(img);
+                //done adding img to page
             }
-
-            console.log(deck);
-
-            //working on adding img to page
-            var hi = data[0].img;
-            console.log(hi);
-
-            var node = document.createElement("img");
-            node.href = hi;
-            node.alt = "ass";
-
-            var img = document.createElement("img");
-            img.src = hi;
-            node.appendChild(img);
-
-            document.body.appendChild(img);
-            //done adding img to page
 
 
             //document.getElementById("pic").innerHTML = "<img src=' " + hi + " ' />";
