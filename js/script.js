@@ -134,10 +134,18 @@ $("#warrior").click(function(){
     console.log(hero);
 });
 
+$("#cardReturn").click(function(){
+    $("#findCard").show(); // or .fadeIn(), etc.
+    $("#dropVal").hide();
+    $("#classChoice").hide();
+});
+
+
 document.getElementById('classChoice').onclick = function () {
 
     //var name = document.getElementById('val1').value;
     var request = new XMLHttpRequest();
+    var card = null;
 
     request.open('GET', 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/classes/' + hero, true);
     request.setRequestHeader("X-Mashape-Key", "1T4oVFrWf4mshDSH9v7n6mAi5fz2p1rEjVmjsnN5U8VwJBvZQd");
@@ -149,19 +157,29 @@ document.getElementById('classChoice').onclick = function () {
 
             for (i = 0; i < data.length; i++) {
                 //working on adding img to page
-                var hi = data[i].img;
-                console.log(hi);
+                var pic = data[i].img;
+                var id = data[i].cardID;
+                card = data[i].name;
+
+                console.log(pic);
+                console.log(card);
 
                 var node = document.createElement("img");
-                node.href = hi;
+                node.href = pic;
                 node.alt = "ass";
 
                 var img = document.createElement("img");
-                img.src = hi;
+                img.src = pic;
+                img.id = id;
                 node.appendChild(img);
 
                 document.body.appendChild(img);
                 //done adding img to page
+
+                $("#" + id).click(function(){
+                    deck.push(card);
+                    console.log("card pushed: " + card);
+                });
             }
 
 
@@ -178,4 +196,4 @@ document.getElementById('classChoice').onclick = function () {
 
     request.send();
 
-}
+};
