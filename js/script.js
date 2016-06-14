@@ -86,6 +86,14 @@ $("#mage").click(function(){
     console.log(hero);
 });
 
+$("#paladin").click(function(){
+    $("#findCard").show(); // or .fadeIn(), etc.
+    $("#dropVal").hide();
+    $("#classChoice").hide();
+    hero = "Paladin";
+    console.log(hero);
+});
+
 $("#priest").click(function(){
     $("#findCard").show(); // or .fadeIn(), etc.
     $("#dropVal").hide();
